@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql:///excel?useSSL=false
+    username: root
+    password: 77777777
+    type: com.alibaba.druid.pool.DruidDataSource
+  rsocket:
+    server:
+      port: 8080
+  mybatis-plus:
+    configuration:
+      # 配置类型处理器
+      type-handlers-package: com.example.work8.handler
+

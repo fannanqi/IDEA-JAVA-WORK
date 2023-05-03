@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<!--    <style>-->
+<!--        .box {-->
+<!--            position: relative;-->
+<!--            border-radius: 3px;-->
+<!--            background: #ffffff;-->
+<!--            border-top: 3px solid #3c8dbc;-->
+<!--            padding: 10px;-->
+<!--            margin-bottom: 20px;-->
+<!--            width: 100%;-->
+<!--            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);-->
+<!--        }-->
+<!--    </style>-->
+</head>
+<body>
+<div id="app">
+        <template>
+            <el-table size="small" current-row-key="loginUser" :data="dataList" style="width: 100%">
+                <el-table-column prop="loginUser" label="用户名" align="center"></el-table-column>
+                <el-table-column prop="loginTime" label="登陆时间" align="center"></el-table-column>
+                <el-table-column prop="loginIp" label="访问ip地址" align="center"></el-table-column>
+            </el-table>
+        </template>
+</div>
+</body>
+<script src="../js/vue.js"></script>
+<script src="../element-ui/lib/index.js"></script>
+<script src="../js/axios-0.18.0.js"></script>
+<link rel="stylesheet" href="../element-ui/lib/theme-chalk/index.css">
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            dataList: [{
+                loginUser: '',
+                loginTime: '',
+                loginIp: ''
+            }]
+        },
+        created() {
+            this.getData();
+        },
+        methods: {
+            getData() {
+                //发送ajax请求
+                axios.get("/getLog").then((res) => {
+                    this.dataList.push(res.data);
+                }).catch(error => {
+                    console.log(error);
+                });
+            },
+        }
+    })
+</script>
+</html>
